@@ -1,34 +1,30 @@
-/*===== SHOW NAVBAR  =====*/ 
-const showNavbar = (toggleId, navId, bodyId, headerId) =>{
-    const toggle = document.getElementById(toggleId),
-    nav = document.getElementById(navId),
-    bodypd = document.getElementById(bodyId),
-    headerpd = document.getElementById(headerId)
-
-    // Validate that all variables exist
-    if(toggle && nav && bodypd && headerpd){
-        toggle.addEventListener('click', ()=>{
-            // show navbar
-            nav.classList.toggle('show')
-            // change icon
-            toggle.classList.toggle('bx-x')
-            // add padding to body
-            bodypd.classList.toggle('body-pd')
-            // add padding to header
-            headerpd.classList.toggle('body-pd')
-        })
+var contador;
+function rate(item){
+    contador = item.id[0]; //captura el primer caracter del id
+    let nombre  = item.id.substring(1); //captura todos los caracteres excepto el primero
+    
+    for(let i=1; i<=5; i++)
+    {
+        if(i <= contador) { //Añade la clase con los estilos a las estrellas en el rango seleccionado
+            document.getElementById(i + nombre + "-icon").classList.add("paint-stars");
+        }
+        else {  //Remueve la clase con los estilos a las estrellas que no estan en el rango seleccionado
+            document.getElementById(i + nombre + "-icon").classList.remove("paint-stars");
+        }
     }
+    document.getElementById(nombre+"-btn").click();
 }
 
-showNavbar('header-toggle','nav-bar','body-pd','header')
-
-/*===== LINK ACTIVE  =====*/ 
-const linkColor = document.querySelectorAll('.nav__link')
-
-function colorLink(){
-    if(linkColor){
-        linkColor.forEach(l=> l.classList.remove('active'))
-        this.classList.add('active')
+function check(cal,id){
+    for(let i=1; i<=5; i++){
+        
+        if(i<=cal){
+            
+            document.getElementById(i+"star"+id+"-icon").classList.add("paint-stars");
+        }
+        else{
+            
+            document.getElementById(i+"star"+id+"-icon").classList.remove("paint-stars");
+        }
     }
 }
-linkColor.forEach(l=> l.addEventListener('click', colorLink))

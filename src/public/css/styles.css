@@ -1,0 +1,23 @@
+hr {
+    height: 1px;
+    background-color: black;
+}
+
+.star-rate input{
+  display: none;
+}
+
+.star-rate button{
+  display: none;
+}
+
+.star-rate i{
+ cursor: pointer;
+ opacity: 60%;
+ transition: all 0.4s ease;
+}
+
+.paint-stars{
+  color: yellow;
+  
+}

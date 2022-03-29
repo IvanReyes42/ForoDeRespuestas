@@ -9,16 +9,13 @@ Password varchar(100) not null,
 Email varchar(50) not null
 );
 
-create table Categorias(
-IdCategoria int primary key auto_increment,
-Nombre varchar(50) not null
-);
 
 create table Problemas(
 IdProblema int primary key auto_increment,
 Titulo varchar(50) not null,
 Descripcion varchar(250) not null,
 Imagen varchar(50),
+Categorias varchar(100),
 FkIdUser int not null,
 Foreign Key (FkIdUser) REFERENCES Users(IdUser)
 );
@@ -32,10 +29,11 @@ Foreign Key (FkIdUser) REFERENCES Users(IdUser),
 Foreign Key (FkIdProblema) REFERENCES Problemas(IdProblema)
 );
 
-create table ProblemasCategorias(
-FkIdProblema int not null,
-FkIdCategoria int not null,
-primary key(FkIdProblema,FkIdCategoria),
-Foreign Key (FkIdProblema) REFERENCES Problemas(IdProblema),
-Foreign Key (FkIdCategoria) REFERENCES Categorias(IdCategoria)
+create table Calificaciones(
+FkIdUser int not null,
+FkIdComentario int not null,
+Calificacion int not null,
+primary key(FkIdUser,FkIdComentario),
+Foreign key(FkIdUser) REFERENCES Users(IdUser),
+Foreign key(FkIdComentario) REFERENCES Comentarios(IdComentario)
 );

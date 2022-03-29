@@ -1,0 +1,124 @@
+{{>message}}
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card ">
+                <div class="card-header text-center">
+                   <div class="row">
+                       <div class="col-md-8">
+                            <h5>{{Pregunta.Titulo}}</h5>
+                       </div>
+                       <div class="col-md-3">
+                            <h5>User: {{Pregunta.UserName}}</h5>
+                       </div>
+                   </div>
+                </div>  
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>{{Pregunta.Descripcion}}</p>
+                        </div>
+                        <div class="col-12">
+                            <img src="/images/{{Pregunta.Imagen}}" alt="Error" class="img-fluid">
+                        </div>
+                        <hr>
+                        <div class="col-12">
+                            Categorias: 
+                            <p style="color: blue;">{{Pregunta.Categorias}}</p>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container p-4">
+    <div class="row text-center">
+        <h5>Comentatios</h5>
+    </div>
+    {{#if user}}
+    <div class="row p-2 m-2">
+        <div class="col-12">
+            <form action="/Respuestas/comentar/{{Pregunta.IdProblema}}" method="post">
+                <div class="row">
+                    <div class="col-md-11">
+                        <input type="text" class="form-control" placeholder="Nuevo Comentario" name="Comentario">
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn">
+                            <i class='bx bxs-send'></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            {{#each Respuestas}}
+            <div class="card p-2 m-2" onmousemove="check({{calificacion}},{{IdComentario}})">
+                <div class="card-body">
+                    <div class="row">
+                        
+                        <div class="col-9">
+                            {{Comentario}}
+                        </div>
+                        
+                        <div class="col-3">
+                            <p>Calificalo</p>
+                        </div>
+                       
+                    </div>
+                    <div class="row" >
+                        <div class="col-9">
+                            <i class='bx bx-user-circle'></i> {{UserName}} 
+                        </div>
+                        
+                        <div class="col-3">
+                            <form action="/Respuestas/Calificar/{{IdComentario}}" method="post">
+                                <div class="star-rate">
+                                    <label>
+                                        <input value="1" type="radio" name="rateR" onclick="rate(this)" id="1star{{IdComentario}}">
+                                        <span><i class="fa-solid fa-star" id="1star{{IdComentario}}-icon"></i></span>
+                                    </label>
+                                    <label>
+                                        <input value="2" type="radio" name="rateR" onclick="rate(this)" id="2star{{IdComentario}}">
+                                        <span><i class="fa-solid fa-star" id="2star{{IdComentario}}-icon"></i></span>
+                                    </label>
+                                    <label>
+                                        <input value="3" type="radio" name="rateR" onclick="rate(this)" id="3star{{IdComentario}}">
+                                        <span><i class="fa-solid fa-star" id="3star{{IdComentario}}-icon"></i></span>
+                                        
+                                    </label>
+                                    <label>
+                                        <input value="4" type="radio" name="rateR" onclick="rate(this)" id="4star{{IdComentario}}">
+                                        <span><i class="fa-solid fa-star" id="4star{{IdComentario}}-icon"></i></span>
+                                    </label>
+                                    <label>
+                                        <input value="5" type="radio" name="rateR" onclick="rate(this)" id="5star{{IdComentario}}">
+                                        <span><i class="fa-solid fa-star" id="5star{{IdComentario}}-icon"></i></span>
+                                    </label>
+                                    <button class="btn" id="star{{IdComentario}}-btn"></button>
+                                </div>
+                                
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5>Sin Comentatios Aun</h5>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    
+</div>

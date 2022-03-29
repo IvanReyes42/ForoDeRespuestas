@@ -1,0 +1,84 @@
+{{>message}}
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-9">
+            <form action="/MisPreguntas" method="post">
+                <div class="form-row">
+                    <div class="col-md-11">
+                         <input type="text" class="form-control" placeholder="Buscar Pregunta" name="Buscar" autofocus>
+                    </div>
+                    <div class="col-md-1">
+                         <button class="btn">
+                             <i class='bx bx-search'></i>
+                         </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="col-md-3">
+            <a href="/MisPreguntas/Add" class="btn btn-success"> Formular Nueva Pregunta </a>
+        </div>
+    </div>
+</div>
+
+{{#each Respuestas}}
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="card ">
+                <div class="card-header text-center">
+                   <div class="row">
+                       <div class="col-md-6">
+                            <h5>{{Titulo}}</h5>
+                       </div>
+                       <div class="col-md-6">
+                            <a href="/MisPreguntas/edit/{{IdProblema}}" class="btn btn-success">Editar</a>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Eliminar{{IdProblema}}">
+                                Eliminar
+                            </button>
+                            <a href="/Respuestas/{{IdProblema}}" class="btn btn-info">Ver Respuestas</a>
+                       </div>
+                   </div>
+                </div>  
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>{{Descripcion}}</p>
+                        </div>
+                        <div class="col-12">
+                            <img src="images/{{Imagen}}" alt="" class="img-fluid">
+                        </div>
+                        <hr>
+                        <div class="col-12">
+                            Categorias: 
+                            <p style="color: blue;">{{Categorias}}</p>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="Eliminar{{IdProblema}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                ¿Esta seguro de eliminar el problema {{Titulo}}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <a href="/MisPreguntas/Delete/{{IdProblema}}" class="btn btn-danger">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{{/each}}
